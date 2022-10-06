@@ -1,15 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import config from '../ormconfig';
+import { MessageModule } from './modules/message/message.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(config),
+    MongooseModule.forRoot('mongodb+srv://chatapp:Aq123456@cluster0.pkfvhu8.mongodb.net/?retryWrites=true&w=majority', {
+      connectionName: 'chat',
+    }),
+    MessageModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 
 export class AppModule {}
